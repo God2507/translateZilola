@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Translator</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff0000">
+</head>
+<body>
+  <div class="container">
+    <h1>Voice Translator</h1>
+    <div class="controls">
+      <select class="from_lang">
+        <option value="uz">Uzbek</option>
+        <option value="en">English</option>
+        <option value="kk">Kazakh</option>
+        <option value="ru">Russian</option>
+      </select>
+      <button class="mic_btn">🎤 Speak</button>
+      <select class="to_lang">
+        <option value="uz">Uzbek</option>
+        <option value="en" selected>English</option>
+        <option value="kk">Kazakh</option>
+        <option value="ru">Russian</option>
+      </select>
+    </div>
+    <textarea class="input_text" placeholder="Speak or write..."></textarea>
+    <button class="translate_btn">Translate</button>
+    <button class="install_btn">Install App</button>
+    <div class="output_box">
+      <h3>Result:</h3>
+      <p class="result">Translation will appear here...</p>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
