@@ -33,7 +33,6 @@ if (SpeechRecognition) {
   };
 
   rec.onerror = (e) => {
-    console.error("Speech recognition error:", e.error);
     mic_btn.textContent = "🎤 Speak";
     mic_btn.disabled = false;
     result.textContent = "Mic error: " + e.error;
@@ -58,30 +57,14 @@ const translate = async () => {
   result.textContent = "Translating...";
   translate_btn.disabled = true;
 
-  const url = "https://google-translate113.p.rapidapi.com/api/v1/translator/text";
-
-  const options = {
-    method: "POST",
-    headers: {
-      "x-rapidapi-key": "d88720b9ccmsh7f308d7d3fda0f2p15f5c2jsne9eada0d6b65",
-      "x-rapidapi-host": "google-translate113.p.rapidapi.com",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: from_lang.value,
-      to: to_lang.value,
-      text: text,
-    }),
-  };
+  const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from_lang.value}|${to_lang.value}`;
 
   try {
-    const res = await fetch(url, options);
-    if (!res.ok) throw new Error("Network error: " + res.status);
+    const res = await fetch(url);
     const data = await res.json();
-    result.textContent = data.trans || "No translation returned.";
+    result.textContent = data.responseData.translatedText;
   } catch (err) {
-    console.error("Translation error:", err);
-    result.textContent = "Translation failed. Check your API key or network.";
+    result.textContent = "Translation failed.";
   } finally {
     translate_btn.disabled = false;
   }
